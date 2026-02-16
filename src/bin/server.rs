@@ -1,4 +1,4 @@
-use std::{io, option, thread};
+use std::{io, thread};
 use std::{
     io::Read,
     net::{TcpListener, TcpStream},
@@ -16,7 +16,7 @@ fn get_addr() -> String {
 }
 
 fn create_listener() {
-    let listener = loop{
+    let listener = loop {
         let addr = get_addr();
         let listener = TcpListener::bind(&addr);
         match listener {
@@ -24,10 +24,10 @@ fn create_listener() {
             Err(_e) => {
                 println!("Address not valid, try again.");
                 get_addr();
-            },
+            }
         }
     };
-    
+
     // Show address in console
     println!("Server started on: {:?}", listener.local_addr().unwrap());
 
