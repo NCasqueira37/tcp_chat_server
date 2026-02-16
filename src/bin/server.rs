@@ -8,7 +8,7 @@ fn main() {
     create_listener(String::from("127.0.0.1:80"));
 }
 
-pub fn create_listener(addr: String) {
+fn create_listener(addr: String) {
     let listener = TcpListener::bind(addr).unwrap();
 
     for stream in listener.incoming() {
