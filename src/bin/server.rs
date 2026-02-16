@@ -29,16 +29,15 @@ pub fn create_listener(addr: String) {
 fn handle_stream(mut stream: TcpStream) {
     let mut buffer = [0u8; 1024];
     loop {
-        buffer.fill(0u8);
         let bytes_read = stream.read(&mut buffer);
         match bytes_read {
             Ok(r) => {
                 // Print data from user to console
                 println!(
-                    "{:?}(size: {}): {}",
+                    "{:?}(size: {} Bytes): {}",
                     stream.local_addr(),
                     r,
-                    String::from_utf8_lossy(&buffer[..bytes_read.unwrap()])
+                    String::from_utf8_lossy(&buffer[..r])
                 );
             }
             Err(e) => {
