@@ -35,6 +35,7 @@ fn create_listener() {
         match stream {
             Ok(stream) => {
                 // Handle each stream in a different thread
+                println!("{} CONNECTED", stream.local_addr().unwrap());
                 thread::spawn(move || {
                     handle_stream(stream);
                 });
